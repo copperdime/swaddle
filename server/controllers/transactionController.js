@@ -10,7 +10,7 @@ let numeral = require('numeral');
 let findAll = async () => {
     try{
         return await Transaction
-            .find()
+            .find().sort({date: -1 })
     }catch(err){
         return ({errorMsg: err.message})
     }
@@ -116,7 +116,7 @@ let fetchLastTransaction = async() => {
         for(let i = 0; i < 1; i++){
             try{
                 let transaction = response.transactions[i];
-                console.log(transaction);
+                //console.log(transaction);
                 let messageBody = "Amount: "+numeral(transaction.amount).format('0.00') + "\n"
                     + "Date: " + moment(transaction.date).format('LL') + "\n"
                     + "Name: " + transaction.name;
@@ -134,8 +134,14 @@ let fetchLastTransaction = async() => {
                     // let sendMessageResult = await messageService.sendMessage(messageBody, config.TO);
                     // console.log(sendMessageResult);
                     //
-                    let insertResult = await insertTransaction(transaction);
-                    console.log(insertResult);
+                    try{
+                        console.log("inserting result");
+                        let insertResult = await insertTransaction(transaction);
+                        console.log(insertResult);
+                    }catch (err){
+                        console.error(err);
+                    }
+
                 }
             }catch (err){
                 console.error(err);
