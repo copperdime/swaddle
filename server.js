@@ -7,7 +7,7 @@ var app      = express();
 var port     = process.env.PORT || 9000;
 var mongoose = require('mongoose');
 var passport = require('passport');
-var flash    = require('connect-flash');
+// var flash    = require('connect-flash');
 
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
