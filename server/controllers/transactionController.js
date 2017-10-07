@@ -124,19 +124,19 @@ let fetchLastTransaction = async() => {
                 let sendMessageResult = await messageService.sendMessage(messageBody, config.TO);
                 //console.log(sendMessageResult);
                 //
-                // let result = await findByTransaction(transaction.transaction_id);
-                // if(result.length === 0) {
-                //
-                //     // let messageBody = "Amount: "+numeral(transaction.amount).format('0.00') + "\n"
-                //     //     + "Date: " + moment(transaction.date).format('LL') + "\n"
-                //     //     + "Name: " + transaction.name;
-                //     //
-                //     // let sendMessageResult = await messageService.sendMessage(messageBody, config.TO);
-                //     // console.log(sendMessageResult);
-                //     //
-                //     let insertResult = await insertTransaction(transaction);
-                //     console.log(insertResult);
-                // }
+                let result = await findByTransaction(transaction.transaction_id);
+                if(result.length === 0) {
+
+                    // let messageBody = "Amount: "+numeral(transaction.amount).format('0.00') + "\n"
+                    //     + "Date: " + moment(transaction.date).format('LL') + "\n"
+                    //     + "Name: " + transaction.name;
+                    //
+                    // let sendMessageResult = await messageService.sendMessage(messageBody, config.TO);
+                    // console.log(sendMessageResult);
+                    //
+                    let insertResult = await insertTransaction(transaction);
+                    console.log(insertResult);
+                }
             }catch (err){
                 console.error(err);
             }
